@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 
+import './style.scss';
+
 const links = [
   {
     name: 'Home',
@@ -23,13 +25,15 @@ export default class Menu extends PureComponent {
   render () {
     return (
       <div className='menu-container'>
-        links.map((item, index) => (
-          <div className='menu-item'>
-            <div className={`menu-item-bg bg${index}`}></div>
-            <div className='mask'></div>
-            <a href={item.url} className='menu-item-link'>{item.name}</a>
-          </div>
-        ))
+        {
+          links.map((item, index) => (
+            <div className='menu-item' key={index}>
+              <div className={`menu-item-bg bg${index}`}></div>
+              <div className='mask'></div>
+              <a href={item.url} className='menu-item-link'>{item.name}</a>
+            </div>
+          ))
+        }
       </div>
     );
   }

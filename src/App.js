@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
-import ArticleContent from 'Components/articleContent';
-import './constant.scss';
+import Sidebar from 'Components/sidebar';
+import Main from 'Components/main';
 import './App.scss';
 
 class App extends PureComponent {
   render() {
     return (
       <div className="app">
-        <ArticleContent />
+        <Sidebar />
+        <Main />
       </div>
     );
   }

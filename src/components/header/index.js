@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
-import 'style.scss';
+import './style.scss';
 
-export default class Main extends PureComponent {
+export default class Header extends PureComponent {
   render () {
     return (
       <div className='header'>

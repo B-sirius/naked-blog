@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { fetchArticle } from '@posts'
+import { fetchArticle } from 'Posts'
+
+import './markdown.css';
+import './style.scss';
 
 export default class ArticleContent extends PureComponent {
   constructor(props) {
@@ -24,9 +27,15 @@ export default class ArticleContent extends PureComponent {
     const { article } = this.state;
 
     return (
-      <ReactMarkdown
-        source={article}
-      />
+      <div className='article-container'>
+        <div className="post-content">
+          <article className="markdown-body">
+            <ReactMarkdown
+              source={article}
+            />
+          </article>
+        </div>
+      </div>
     )
   }
 }

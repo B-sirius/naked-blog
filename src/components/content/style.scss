@@ -1,0 +1,8 @@
+.content-inner {
+  box-sizing: border-box;
+  min-height: calc(100vh - 300px);
+  padding: 30px 60px 100px 30px;
+  @media screen and (max-width: $phone-size) {
+    padding: 30px;
+  }
+}
