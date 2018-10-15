@@ -1,0 +1,11 @@
+$pad-size: 1024px;
+
+.sidebar {
+  position: fixed;
+  width: 240px;
+  height: 100vh;
+  z-index: 1;
+  @media screen and (max-width: $pad-size) {
+    display: none;
+  }
+}

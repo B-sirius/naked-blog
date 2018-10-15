@@ -1,0 +1,13 @@
+$footer-height: 300px;
+$content-bg-color: #fff;
+$pad-size: 1024px;
+
+.main {
+  margin-left: 240px;
+  margin-bottom: $footer-height;
+  background: $content-bg-color;
+  @media screen and(max-width: $pad-size) {
+    margin-left: 0;
+    margin-bottom: 100px;
+  }
+}
