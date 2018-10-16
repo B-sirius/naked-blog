@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import ArticleContent from 'Components/articlecontent';
+import Article from 'Components/article';
 import './style.scss';
 
 export default class Content extends PureComponent {
@@ -7,7 +7,7 @@ export default class Content extends PureComponent {
     return (
       <div>
         <div className="content-inner">
-          <ArticleContent />
+          <Article />
         </div>
       </div>
     );

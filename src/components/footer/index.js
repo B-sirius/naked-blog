@@ -32,7 +32,7 @@ export default class Footer extends PureComponent {
           links.map((item, index) => (
             <a href={item.url} target='_blank' className='footer-link-btn' key={index} rel='noopener noreferrer'>
               <div className='footer-mask'></div>
-              <img className='footer-icon' src={item.imgUrl} />
+              <img alt={item.name} className='footer-icon' src={item.imgUrl} />
               <span className='footer-text'>
                 {item.name}
               </span>
