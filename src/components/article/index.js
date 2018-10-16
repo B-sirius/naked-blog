@@ -28,6 +28,7 @@ class ArticleContent extends PureComponent {
     }
   }
 
+  // 获取markdown内容
   getMarkdownString = () => {
     const { articleTitle } = this.props.match.params;
     const url = getMdURL(articleTitle);
@@ -41,9 +42,7 @@ class ArticleContent extends PureComponent {
           throw Error(response.statusText);
         }
 
-        console.log('nope')
-          return response.text();
-
+        return response.text();
       })
       .then(
         text => {
@@ -56,6 +55,7 @@ class ArticleContent extends PureComponent {
       .catch(error => console.log(error));
   }
 
+  // 渲染文章
   renderArticleContent = () => {
     const { markdownString, foundPage } = this.state;
     console.log('shit', markdownString)
