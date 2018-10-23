@@ -1,8 +1,18 @@
 .content-inner {
+  position: relative;
   box-sizing: border-box;
   min-height: calc(100vh - 300px);
   padding: 30px 60px 100px 30px;
   @media screen and (max-width: $phone-size) {
     padding: 30px;
   }
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
 }

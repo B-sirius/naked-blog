@@ -1,3 +1,21 @@
 .article-container {
   position: relative;
 }
+.post-content {
+  box-sizing: border-box;
+  min-width: 200px;
+  margin-right: 15px;
+  .comment-wrapper {
+    margin-top: 40px;
+    .comment-title {
+      background: $logo-bg-color;
+      line-height: 36px;
+      color: $text-white;
+      padding: 0 5px;
+    }
+  }
+  @media screen and (max-width: $pad-size) {
+    margin: 0 auto;
+    width: 100%;
+  }
+}
