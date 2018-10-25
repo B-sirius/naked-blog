@@ -1,0 +1,16 @@
+.interlude {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 240px;
+  right: 0;
+  background: #f2119c;
+  transform: translateX(100%);
+  transition: 0.4s;
+  @media screen and(max-width: $pad-size) {
+    left: 0;
+  }
+  &.interlude-active {
+    transform: translateX(0);
+  }
+}

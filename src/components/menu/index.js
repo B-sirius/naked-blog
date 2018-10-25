@@ -11,15 +11,15 @@ const links = [
   },
   {
     name: 'Archives',
-    url: '#',
+    url: 'javascript:;',
   },
   {
     name: 'Github',
-    url: '#',
+    url: 'https://github.com/b-sirius',
   },
   {
     name: 'About',
-    url: '#',
+    url: 'javascript:;',
   },
 ]
 

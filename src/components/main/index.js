@@ -5,7 +5,7 @@ import Footer from 'Components/footer';
 import './style.scss';
 
 export default class Main extends PureComponent {
-  render () {
+  render() {
     return (
       <div className='main'>
         <Header />
