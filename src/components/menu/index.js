@@ -11,7 +11,7 @@ const links = [
   },
   {
     name: 'Archives',
-    url: 'javascript:;',
+    url: '/archives',
   },
   {
     name: 'Github',

@@ -62,7 +62,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "compile": "npx babel-node compile.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -73,7 +74,10 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"

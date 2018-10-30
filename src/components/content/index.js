@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react';
 import Article from 'Components/article';
 import ArticleList from 'Components/articlelist';
+import Archives from 'Components/archives';
 import Interlude from 'Components/interlude';
+import posts from 'Posts/posts.json';
+import categoryMap from 'Posts/categoryMap.json';
+import tagMap from 'Posts/tagMap.json';
 import { Router, Route, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import history from 'Util/history';
@@ -9,7 +13,6 @@ import history from 'Util/history';
 import './style.scss';
 
 export default class Content extends PureComponent {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +35,7 @@ export default class Content extends PureComponent {
   }
 
   render() {
-    const { enableInterlude, disableInterlude } = this;
+    const { enableInterlude, disableInterlude, getList } = this;
     const { isInterlude } = this.state;
 
     return (
@@ -50,8 +53,31 @@ export default class Content extends PureComponent {
                     onExited={disableInterlude}
                   >
                     <Switch location={location}>
-                      <Route exact path="/" component={ArticleList} />
-                      <Route path="/page/:pageNum" component={ArticleList} />
+                      <Route exact path="/" render={props => (
+                        <ArticleList
+                          {...props}
+                          list={posts}
+                        />
+                      )} />
+                      <Route path="/page/:pageNum" render={props => (
+                        <ArticleList
+                          {...props}
+                          list={posts}
+                        />
+                      )} />
+                      <Route path="/category/:key" render={props => (
+                        <SelectedArticleList
+                          {...props}
+                          map={categoryMap}
+                        />
+                      )} />
+                      <Route path="/tag/:key" render={props => (
+                        <SelectedArticleList
+                          {...props}
+                          map={tagMap}
+                        />
+                      )} />
+                      <Route path="/archives" component={Archives} />
                       <Route path="/post" component={Article} />
                     </Switch>
                   </CSSTransition>
@@ -68,3 +94,23 @@ export default class Content extends PureComponent {
   }
 }
 
+class SelectedArticleList extends PureComponent {
+  getList = (map) => {
+    const { key } = this.props.match.params;
+    const list = map[key];
+    if (!list) {
+      return;
+    }
+
+    return list;
+  }
+
+  render() {
+    const { getList } = this;
+    const { map } = this.props;
+
+    return (
+      <ArticleList list={getList(map)} />
+    )
+  }
+}
