@@ -143,7 +143,8 @@ module.exports = {
       'react-native': 'react-native-web',
       'Components': path.resolve(__dirname, '../src/components'),
       'Posts': path.resolve(__dirname, '../src/posts'),
-      'Util': path.resolve(__dirname, '../src/util')
+      'Util': path.resolve(__dirname, '../src/util'),
+      'Constant': path.resolve(__dirname, '../src/constant')
     },
     plugins: [
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding

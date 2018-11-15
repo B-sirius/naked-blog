@@ -1,12 +1,8 @@
 import React, { PureComponent } from 'react';
 import './style.scss';
+import PropTypes from 'prop-types';
 
 export default class Interlude extends PureComponent {
-
-  constructor(props) {
-    super(props);
-  }
-
   interludeClassName = () => {
     const {isInterlude} = this.props;
     return isInterlude ? 'interlude interlude-active' : 'interlude';
@@ -21,3 +17,6 @@ export default class Interlude extends PureComponent {
   }
 }
 
+Interlude.propTypes = {
+  isInterlude: PropTypes.bool
+}

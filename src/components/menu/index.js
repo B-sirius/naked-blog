@@ -20,6 +20,7 @@ const links = [
   {
     name: 'About',
     url: 'javascript:;',
+    chain: true, // 外链
   },
 ]
 
@@ -33,7 +34,12 @@ export default class Menu extends PureComponent {
               <div className='menu-item' key={index}>
                 <div className={`menu-item-bg bg${index}`}></div>
                 <div className='mask'></div>
-                <Link to={item.url} className='menu-item-link'>{item.name}</Link>
+                {
+                  item.chain ?
+                  <a className='menu-item-link' href={item.url} target="_blank" rel="noopener noreferrer">{item.name}</a>
+                  :
+                  <Link to={item.url} className='menu-item-link'>{item.name}</Link>
+                }
               </div>
             ))
           }

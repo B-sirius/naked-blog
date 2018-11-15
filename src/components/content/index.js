@@ -3,12 +3,15 @@ import Article from 'Components/article';
 import ArticleList from 'Components/articlelist';
 import Archives from 'Components/archives';
 import Interlude from 'Components/interlude';
+import NotFound from 'Components/notfound';
 import posts from 'Posts/posts.json';
 import categoryMap from 'Posts/categoryMap.json';
 import tagMap from 'Posts/tagMap.json';
 import { Router, Route, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import history from 'Util/history';
+import { getPageNum } from 'Util/helper';
+import PropTypes from 'prop-types';
 
 import './style.scss';
 
@@ -35,7 +38,7 @@ export default class Content extends PureComponent {
   }
 
   render() {
-    const { enableInterlude, disableInterlude, getList } = this;
+    const { enableInterlude, disableInterlude } = this;
     const { isInterlude } = this.state;
 
     return (
@@ -54,24 +57,34 @@ export default class Content extends PureComponent {
                   >
                     <Switch location={location}>
                       <Route exact path="/" render={props => (
-                        <ArticleList
+                        <SelectedArticleList
                           {...props}
-                          list={posts}
                         />
                       )} />
-                      <Route path="/page/:pageNum" render={props => (
-                        <ArticleList
+                      <Route path="/page/:pageNumStr" render={props => (
+                        <SelectedArticleList
                           {...props}
-                          list={posts}
                         />
                       )} />
-                      <Route path="/category/:key" render={props => (
+                      <Route exact path="/category/:selectedKey" render={props => (
                         <SelectedArticleList
                           {...props}
                           map={categoryMap}
                         />
                       )} />
-                      <Route path="/tag/:key" render={props => (
+                      <Route path="/category/:selectedKey/page/:pageNumStr" render={props => (
+                        <SelectedArticleList
+                          {...props}
+                          map={categoryMap}
+                        />
+                      )} />
+                      <Route exact path="/tag/:selectedKey" render={props => (
+                        <SelectedArticleList
+                          {...props}
+                          map={tagMap}
+                        />
+                      )} />
+                      <Route path="/tag/:selectedKey/page/:pageNumStr" render={props => (
                         <SelectedArticleList
                           {...props}
                           map={tagMap}
@@ -79,6 +92,7 @@ export default class Content extends PureComponent {
                       )} />
                       <Route path="/archives" component={Archives} />
                       <Route path="/post" component={Article} />
+                      <Route component={NotFound} />
                     </Switch>
                   </CSSTransition>
                 </TransitionGroup>
@@ -95,22 +109,52 @@ export default class Content extends PureComponent {
 }
 
 class SelectedArticleList extends PureComponent {
-  getList = (map) => {
-    const { key } = this.props.match.params;
-    const list = map[key];
-    if (!list) {
-      return;
+  getList = map => {
+    const { selectedKey = null } = this.props.match.params;
+    if (selectedKey) {
+      const list = map[selectedKey];
+      if (!list) {
+        return [];
+      }
+
+      return list;
     }
 
-    return list;
+    return posts;
+  }
+
+  getCurrCatalog = () => {
+    const { url } = this.props.match;
+    const { pageNumStr } = this.props.match.params;
+    if (pageNumStr) {
+      return url.match(/(\S)+(?=page\/[0-9]+)/g)[0];
+    }
+    
+    return url[url.length - 1] === '/' ? url : `${url}/`;
   }
 
   render() {
-    const { getList } = this;
+    const { getList, getCurrCatalog } = this;
     const { map } = this.props;
+    const { pageNumStr = '1' } = this.props.match.params;
 
     return (
-      <ArticleList list={getList(map)} />
+      <ArticleList
+        list={getList(map)}
+        pageNum={getPageNum(pageNumStr)}
+        catalog={getCurrCatalog()}
+      />
     )
   }
+}
+
+SelectedArticleList.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      pageNumStr: PropTypes.string,
+      selectedKey: PropTypes.string
+    }),
+    path: PropTypes.string,
+    url: PropTypes.string
+  })
 }

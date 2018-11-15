@@ -1,0 +1,1 @@
+export const NO_MATCH = Symbol('no-match');

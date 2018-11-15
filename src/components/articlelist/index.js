@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Router, Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 import history from 'Util/history';
+import { NO_MATCH } from 'Constant';
 import Pages from 'Components/pages';
 
 import './style.scss';
@@ -14,15 +16,6 @@ export default class ArticleList extends PureComponent {
     }
   }
 
-  currPage = () => {
-    let pageNum = 1;
-    if (this.props.match && this.props.match.params) {
-      pageNum = this.props.match.params.pageNum;
-    }
-    pageNum = parseInt(pageNum);
-    return isNaN(pageNum) ? 1 : pageNum;
-  }
-
   pageCount = () => {
     const { list } = this.props;
     const { postsCount } = this.state;
@@ -30,10 +23,14 @@ export default class ArticleList extends PureComponent {
   }
 
   currLists = () => {
-    const { list } = this.props;
+    const { list, pageNum } = this.props;
     const { postsCount } = this.state;
-    const { currPage } = this;
-    const offset = (currPage() - 1) * postsCount;
+
+    if (pageNum === NO_MATCH) {
+      return [];
+    }
+
+    const offset = (pageNum - 1) * postsCount;
     return list.slice(offset, offset + postsCount);
   }
 
@@ -43,39 +40,44 @@ export default class ArticleList extends PureComponent {
 
   render() {
     const lists = this.currLists();
-    const { pageCount, currPage } = this;
+    const { pageCount } = this;
+    const { pageNum, catalog } = this.props;
 
     return (
       <Router history={history}>
         <div>
           <div>
             {
-              lists.map(item => (
-                <div className="recent-post-item" key={item.title}>
-                  <div className="recent-post-info">
-                    <Link to={`/post/${item.name}`} className="link" >
-                      <span className="title">{item.title}</span>
-                    </Link>
-                    {item.date && <time className="recent-post-time">{item.date}</time>}
-                    {
-                      item.tags.length &&
-                      <div className="recent-post-tag-list">
-                        {
-                          item.tags.map(tag => (
-                            <Link to={`/tag/${tag}`} key={tag} className="tag">#{tag}</Link>
-                          ))
-                        }
-                      </div>
-                    }
-                    {item.description && <div className="recent-post-description">{item.description}</div>}
+              !!lists.length ?
+                lists.map(item => (
+                  <div className="recent-post-item" key={item.title}>
+                    <div className="recent-post-info">
+                      <Link to={`/post/${item.name}`} className="link" >
+                        <span className="title">{item.title}</span>
+                      </Link>
+                      {item.date && <time className="recent-post-time">{item.date}</time>}
+                      {
+                        item.tags.length &&
+                        <div className="recent-post-tag-list">
+                          {
+                            item.tags.map(tag => (
+                              <Link to={`/tag/${tag}`} key={tag} className="tag">#{tag}</Link>
+                            ))
+                          }
+                        </div>
+                      }
+                      {item.description && <div className="recent-post-description">{item.description}</div>}
+                    </div>
                   </div>
-                </div>
-              ))
+                ))
+                :
+                '什么都没有找到'
             }
           </div>
           <Pages
             pageCount={pageCount()}
-            currPage={currPage()}
+            pageNum={pageNum}
+            catalog={catalog}
           />
         </div>
       </Router>
@@ -83,3 +85,13 @@ export default class ArticleList extends PureComponent {
   }
 }
 
+ArticleList.propTypes = {
+  list: PropTypes.array,
+  pageNum: PropTypes.oneOfType(
+    [
+      PropTypes.number,
+      PropTypes.symbol
+    ]
+  ),
+  catalog: PropTypes.string
+}

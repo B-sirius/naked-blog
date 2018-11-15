@@ -7,15 +7,11 @@ import history from 'Util/history';
 import './style.scss';
 
 export default class Archives extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   listContent = (path, listMap) => {
     const content = [];
     for (let key of Object.keys(listMap)) {
       content.push(
-        <li className="list-item">
+        <li key={key} className="list-item">
           <Link to={`/${path}/${key}`} className="list-link">{key}</Link>
         </li>
       )

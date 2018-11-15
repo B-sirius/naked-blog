@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { getMdURL } from 'Util/helper';
+import PropTypes from 'prop-types';
 
 import './markdown.css';
 import './style.scss';
@@ -61,7 +62,7 @@ class ArticleContent extends PureComponent {
   renderArticleContent = () => {
     const { markdownString, foundPage } = this.state;
     if (!foundPage) return (
-      <span>shiiiit happens</span>
+      <span>什么都没有找到</span>
     )
     if (!markdownString.length) return (
       <span>loading blablabla</span>
@@ -83,4 +84,14 @@ class ArticleContent extends PureComponent {
       </div>
     )
   }
+}
+
+ArticleContent.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      articleTitle: PropTypes.string
+    }),
+    path: PropTypes.string,
+    url: PropTypes.string
+  })
 }
