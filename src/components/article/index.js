@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { getMdURL } from 'Util/helper';
 import PropTypes from 'prop-types';
+import history from 'Util/history';
 
 import './markdown.css';
 import './style.scss';
@@ -10,7 +11,7 @@ import './style.scss';
 export default class Article extends PureComponent {
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div className='article-container'>
           <Route path='/post/:articleTitle' component={ArticleContent} />
         </div>
