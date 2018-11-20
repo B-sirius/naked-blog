@@ -1,0 +1,33 @@
+.content-outer {
+  position: relative;
+}
+
+.content-inner {
+  position: relative;
+  box-sizing: border-box;
+  min-height: calc(100vh - 300px);
+  padding: 30px 60px 100px 30px;
+  @media screen and (max-width: $phone-size) {
+    padding: 30px;
+  }
+}
+
+.content-interlude {
+  position: absolute;
+  width: 0%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #5042f4;
+  transition: 0.5s;
+  &.content-interlude-active {
+    width: 100%;
+  }
+}
+
+.wait-enter {
+  display: none;
+  .wait-enter-done {
+    display: block;
+  }
+}

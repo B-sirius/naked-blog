@@ -1,0 +1,11 @@
+.main {
+  position: relative;
+  margin-left: 240px;
+  margin-bottom: $footer-height;
+  background: $content-bg-color;
+  overflow-x: hidden;
+  @media screen and(max-width: $pad-size) {
+    margin-left: 0;
+    margin-bottom: 100px;
+  }
+}

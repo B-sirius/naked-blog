@@ -1,0 +1,64 @@
+.pages-container {
+  // 页脚
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .page-number {
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    text-decoration: none;
+    color: $text-black;
+    border: 1px solid transparent;
+    transition: 0.3s;
+    &:hover {
+      cursor: pointer;
+      border: 1px solid $page-number-bg;
+    }
+    &.current,
+    &.current:hover {
+      background: $page-number-bg;
+      border: 1px solid $page-number-bg;
+      color: $text-white;
+      cursor: default;
+    }
+  }
+  .extend {
+    box-sizing: border-box;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    text-decoration: none;
+    color: $text-black;
+    border: 1px solid transparent;
+    transition: 0.3s;
+    &:hover {
+      cursor: pointer;
+      border: 1px solid $page-number-bg;
+    }
+  }
+  .space {
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    text-decoration: none;
+    color: $text-black;
+    transition: 0.3s;
+  }
+}
