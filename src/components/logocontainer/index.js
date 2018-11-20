@@ -6,7 +6,26 @@ export default class LogoContainer extends PureComponent {
   render () {
     return (
       <div className="logo-container">
-        <canvas width="240" height="300"></canvas>
+        <div className="logo-content">
+          <div className="running-box">
+            Still Working On It...
+          </div>
+          <div className="running-box">
+            Still Working On It....
+          </div>
+          <div className="running-box">
+            Still Working On It.....
+          </div>
+          <div className="running-box">
+            Still Working On It!!!
+          </div>
+          <div className="running-box">
+            Still Working On It...
+          </div>
+          <div className="running-box">
+            Still Working On It....
+          </div>
+        </div>
       </div>
     );
   }

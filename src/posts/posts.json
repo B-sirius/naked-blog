@@ -217,7 +217,7 @@
   },
   {
     "title": "linux下使用hexo+git pages搭建博客的几个小坑",
-    "name": "hexo+gitPages",
+    "name": "hexo与gitPages",
     "date": "2016-11-27",
     "tags": ["hexo", "git"],
     "categories": "博客",

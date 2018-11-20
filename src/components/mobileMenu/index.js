@@ -24,7 +24,6 @@ export default class MobileMenu extends PureComponent {
   }
 
   closeMobileMenu = () => {
-    console.log('nope')
     this.setState({
       isActive: false
     });

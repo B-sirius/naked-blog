@@ -144,7 +144,8 @@ module.exports = {
       'Components': path.resolve(__dirname, '../src/components'),
       'Posts': path.resolve(__dirname, '../src/posts'),
       'Util': path.resolve(__dirname, '../src/util'),
-      'Constant': path.resolve(__dirname, '../src/constant')
+      'Constant': path.resolve(__dirname, '../src/constant'),
+      'Assets': path.resolve(__dirname, '../src/assets')
     },
     plugins: [
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding

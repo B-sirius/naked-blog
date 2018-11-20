@@ -91,7 +91,7 @@ export default class Content extends PureComponent {
                         />
                       )} />
                       <Route path="/archives" component={Archives} />
-                      <Route path="/post" component={Article} />
+                      <Route path="/post/:articleTitle" component={Article} />
                       <Route component={NotFound} />
                     </Switch>
                   </CSSTransition>

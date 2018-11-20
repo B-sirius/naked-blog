@@ -1,26 +1,12 @@
 import React, { PureComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { getMdURL } from 'Util/helper';
 import PropTypes from 'prop-types';
-import history from 'Util/history';
 
 import './markdown.css';
 import './style.scss';
 
 export default class Article extends PureComponent {
-  render() {
-    return (
-      <Router history={history}>
-        <div className='article-container'>
-          <Route path='/post/:articleTitle' component={ArticleContent} />
-        </div>
-      </Router>
-    )
-  }
-}
-
-class ArticleContent extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,19 +61,22 @@ class ArticleContent extends PureComponent {
 
   render() {
     const { renderArticleContent } = this;
+
     return (
-      <div className="post-content">
-        <article className="markdown-body">
-          {
-            renderArticleContent()
-          }
-        </article>
+      <div className="article-container">
+        <div className="post-content">
+          <article className="markdown-body">
+            {
+              renderArticleContent()
+            }
+          </article>
+        </div>
       </div>
     )
   }
 }
 
-ArticleContent.propTypes = {
+Article.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       articleTitle: PropTypes.string
