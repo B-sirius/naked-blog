@@ -215,6 +215,11 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      'Components': path.resolve(__dirname, '../src/components'),
+      'Posts': path.resolve(__dirname, '../src/posts'),
+      'Util': path.resolve(__dirname, '../src/util'),
+      'Constant': path.resolve(__dirname, '../src/constant'),
+      'Assets': path.resolve(__dirname, '../src/assets')
     },
     plugins: [
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -367,13 +372,22 @@ module.exports = {
           {
             test: sassRegex,
             exclude: sassModuleRegex,
-            loader: getStyleLoaders(
+            use: [
+              ...getStyleLoaders(
+                {
+                  importLoaders: 2,
+                  sourceMap: shouldUseSourceMap,
+                },
+                'sass-loader'
+              ),
               {
-                importLoaders: 2,
-                sourceMap: shouldUseSourceMap,
-              },
-              'sass-loader'
-            ),
+                loader: 'sass-resources-loader',
+                options: {
+                  // path to the file with resources
+                  resources: path.resolve(__dirname, '../src/constant/resources.scss'),
+                },
+              }
+            ],
             // Don't consider CSS imports dead code even if the
             // containing package claims to have no side effects.
             // Remove this when webpack adds a warning or an error for this.
