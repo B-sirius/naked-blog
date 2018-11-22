@@ -3,6 +3,8 @@ import ReactMarkdown from 'react-markdown';
 import { getMdURL } from 'Util/helper';
 import PropTypes from 'prop-types';
 
+import Valine from 'valine';
+
 import './markdown.css';
 import './style.scss';
 
@@ -17,6 +19,15 @@ export default class Article extends PureComponent {
 
   componentDidMount() {
     this.getMarkdownString();
+
+    // 初始化评论
+    new Valine({
+      el: '#js-comment',
+      appId: 'xAgNfqDbPu4HfcuSWlDQEh4u-gzGzoHsz',
+      appKey: '7CVjLXNHODMvmGIKOEQuS4mW',
+      placeholder: '大声港，港到我听到为滋！',
+      avatar: 'retro'
+    });
   }
 
   // 获取markdown内容
@@ -71,6 +82,7 @@ export default class Article extends PureComponent {
             }
           </article>
         </div>
+        <div id="js-comment"></div>
       </div>
     )
   }

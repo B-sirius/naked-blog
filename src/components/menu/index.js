@@ -16,11 +16,12 @@ const links = [
   {
     name: 'Github',
     url: 'https://github.com/b-sirius',
+    chain: true,
   },
   {
     name: 'About',
     url: 'javascript:;',
-    chain: true, // 外链
+    chain: true,
   },
 ]
 
