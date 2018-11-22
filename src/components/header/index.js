@@ -10,7 +10,7 @@ export default class Header extends PureComponent {
             <span className="bold">Sirius’s</span>
             <span className="light">{' blog'}</span>
           </h1>
-          <h2 className="header-subtitle">我练功发自真心</h2>
+          <h2 className="header-subtitle">赞美太阳</h2>
         </div>
       </div>
     );
